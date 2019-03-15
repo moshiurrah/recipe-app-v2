@@ -1,6 +1,3 @@
-
-
-
 const express = require('express');
 const routes = require('./app/routes/index.js');
 const mongoose = require('mongoose');
@@ -10,8 +7,6 @@ const bodyParser = require('body-parser');
 const util = require('util');
 const favicon = require('serve-favicon');
 const path = require('path');
-
-
 module.exports = (config) => {
 
   const app = express();
@@ -22,7 +17,6 @@ module.exports = (config) => {
   if (process.env.NODE_ENV === 'production') {
     app.use('/static', express.static(process.cwd() + '/client/build/static'));
   }
-
 
   app.use(favicon(path.join(__dirname, 'client', 'build', 'favicon.ico')));
   if (process.env.NODE_ENV === 'production') {
@@ -42,14 +36,7 @@ module.exports = (config) => {
   app.use(passport.session());
 
   app.use('/api', routes(passport, null,'mongo'));
-
-  // the following condition will allow mocha to work for now
-  if (config.mysql.client){
-    app.use('/apisql', routes(passport, config.mysql.client, 'sql'));
-  }
   
-  // app.use('/apitest', routes(passport, 'test'));
-
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
     var error = new Error('Not found!');
@@ -64,6 +51,5 @@ module.exports = (config) => {
     }
     res.status(500).send(`Error found: ${err.message}`);
   })
-
   return app;
 }
