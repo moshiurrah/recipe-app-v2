@@ -41,7 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "axios-progress-bar": "^1.1.8",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
     "dotenv": "^1.2.0",
